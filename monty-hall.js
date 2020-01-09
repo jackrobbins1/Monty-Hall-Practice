@@ -82,3 +82,30 @@ function runTest(times) {
 }
 
 runTest(10000)
+
+function runTestKeepChoice(times) {
+    let count = 0
+    let wins = 0
+
+    while (count < times) {
+        const doors = generateDoors()
+        setWinnerDoor(doors)
+        setChoice(doors)
+        // console.log(doors)
+        // console.log(montyHallReveal(doors))
+
+        for (const door of doors) {
+            door.prize === "car" && door.choice === true ? wins++ : null
+        }
+
+        count++
+    }
+
+    const percentWins = wins / count
+    console.log(`    The test ran ${times} times.
+    The percentage the contestant chose correctly
+    after not switching their choice post Monty Hall Reveal is: 
+    ${percentWins * 100}%`)
+}
+
+runTestKeepChoice(10000)
